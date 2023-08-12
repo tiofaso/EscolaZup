@@ -23,6 +23,9 @@ public class AlunoController {
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<AlunoDTO> cadastraAluno(@RequestBody Aluno aluno) {
         Aluno novoAluno = alunoService.cadastraAluno(aluno);
+
+
+
         return new ResponseEntity<>(alunoMapper.toDto(aluno),HttpStatus.CREATED);
     }
 }

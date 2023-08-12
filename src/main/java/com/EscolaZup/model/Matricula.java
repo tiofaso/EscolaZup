@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -20,15 +21,15 @@ public class Matricula {
     private Long id;
 
     @Column(nullable = false)
-    private Date datamatricula;
+    private LocalDate datamatricula;
 
-    @OneToOne
-    @JoinColumn(name = "alunoid", referencedColumnName = "id")
+    @ManyToOne
+    @JoinColumn(name = "alunoid", referencedColumnName = "id",  insertable = false, updatable = false)
     private Aluno aluno;
     private Long alunoid;
 
-    @OneToOne
-    @JoinColumn(name = "cursoid", referencedColumnName = "id")
+    @ManyToOne
+    @JoinColumn(name = "cursoid", referencedColumnName = "id",  insertable = false, updatable = false)
     private Curso curso;
     private Long cursoid;
 }

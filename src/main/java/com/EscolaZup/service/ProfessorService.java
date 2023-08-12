@@ -26,7 +26,6 @@ public class ProfessorService {
         novoProfessor.setSalario(professor.getSalario());
         novoProfessor.setCurso(professor.getCurso());
 
-        System.out.printf("\n#" + String.valueOf(professor.getCurso())+"#\n");
         return professorRepository.save(professor);
     }
 

@@ -11,8 +11,6 @@ public class AlunoService {
     @Autowired
     AlunoRepository alunoRepository;
 
-
-
     //Método que cadastra aluno
     public Aluno cadastraAluno(Aluno aluno) {
         return alunoRepository.save(aluno);

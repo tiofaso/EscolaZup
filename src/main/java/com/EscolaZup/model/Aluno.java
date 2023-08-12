@@ -17,9 +17,13 @@ public class Aluno {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(length = 255, nullable = false)
     private String nome;
 
     @Column(nullable = false)
     private int idade;
+
+    @Column(length = 150, nullable = false)
+    private String email;
 }
