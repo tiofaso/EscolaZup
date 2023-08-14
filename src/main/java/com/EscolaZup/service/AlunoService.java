@@ -8,6 +8,7 @@ import com.EscolaZup.repository.MatriculaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -18,6 +19,16 @@ public class AlunoService {
     //Método que cadastra aluno
     public Aluno cadastraAluno(Aluno aluno) {
         return alunoRepository.save(aluno);
+    }
+
+    //Método que apaga aluno na DB
+    public void deletar(Long id) {
+        alunoRepository.deleteById(id);
+    }
+
+    //Método que lista todos alunos da DB
+    public List<Aluno> buscarTodos() {
+        return alunoRepository.findAll();
     }
 
 }

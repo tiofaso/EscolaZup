@@ -1,13 +1,11 @@
 package com.EscolaZup.service;
 
-import com.EscolaZup.dto.ProfessorDTO;
-import com.EscolaZup.model.Curso;
 import com.EscolaZup.model.Professor;
 import com.EscolaZup.repository.ProfessorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.List;
 
 @Service
 public class ProfessorService {
@@ -28,4 +26,15 @@ public class ProfessorService {
 
         return professorRepository.save(professor);
     }
+
+    //Método que apaga professor na DB
+    public void deletar(Long id) {
+        professorRepository.deleteById(id);
+    }
+
+    //Método que lista todos alunos da DB
+    public List<Professor> buscarTodos() {
+        return professorRepository.findAll();
+    }
+
 }

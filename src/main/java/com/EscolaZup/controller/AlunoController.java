@@ -12,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(path = "/api/zupescola")
 public class AlunoController {
@@ -29,4 +31,15 @@ public class AlunoController {
         return new ResponseEntity<>(alunoMapper.toDto(aluno),HttpStatus.CREATED);
     }
 
+    //Endpoint para apagar aluno (delete)
+    @DeleteMapping(path = "deletealuno/{id}")
+    public void detelaAluno(@PathVariable Long id) {
+        alunoService.deletar(id);
+    }
+
+    //Endpoint para listar todos alunos (get)
+    @GetMapping(path = "/alunos")
+    public List<Aluno> buscaTodosAlunos() {
+        return alunoService.buscarTodos();
+    }
 }

@@ -15,3 +15,4 @@ public class CursoDTO {
     private String nomeDto;
     private int cargahorariaDto;
 }
+
