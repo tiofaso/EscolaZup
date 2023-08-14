@@ -28,5 +28,4 @@ public class ProfessorService {
 
         return professorRepository.save(professor);
     }
-
 }

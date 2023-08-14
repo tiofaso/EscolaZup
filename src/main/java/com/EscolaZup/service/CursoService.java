@@ -17,4 +17,7 @@ public class CursoService {
         return cursoRepository.save(curso);
     }
 
+    //Método que busca curso na DB
+    public Optional<Curso> buscaCursoId(Long id) { return cursoRepository.findById(id);}
+
 }

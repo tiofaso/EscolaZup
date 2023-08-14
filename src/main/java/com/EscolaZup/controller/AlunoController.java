@@ -1,8 +1,11 @@
 package com.EscolaZup.controller;
 
 import com.EscolaZup.dto.AlunoDTO;
+import com.EscolaZup.dto.MatriculaDTO;
 import com.EscolaZup.mapper.AlunoMapper;
+import com.EscolaZup.mapper.MatriculaMapper;
 import com.EscolaZup.model.Aluno;
+import com.EscolaZup.model.Matricula;
 import com.EscolaZup.service.AlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,9 +26,7 @@ public class AlunoController {
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<AlunoDTO> cadastraAluno(@RequestBody Aluno aluno) {
         Aluno novoAluno = alunoService.cadastraAluno(aluno);
-
-
-
         return new ResponseEntity<>(alunoMapper.toDto(aluno),HttpStatus.CREATED);
     }
+
 }

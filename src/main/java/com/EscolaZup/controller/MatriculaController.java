@@ -2,6 +2,7 @@ package com.EscolaZup.controller;
 
 import com.EscolaZup.dto.MatriculaDTO;
 import com.EscolaZup.mapper.MatriculaMapper;
+import com.EscolaZup.model.Aluno;
 import com.EscolaZup.model.Matricula;
 import com.EscolaZup.service.MatriculaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,14 @@ public class MatriculaController {
     public ResponseEntity<MatriculaDTO> cadastraMatricula(@RequestBody Matricula matricula) {
         Matricula novaMatricula = matriculaService.cadastraMatricula(matricula);
         return new ResponseEntity<>(matriculaMapper.toDto(matricula),HttpStatus.CREATED);
+    }
+
+    //Endpoint que atualiza curso do aluno (put)
+    @PutMapping(path = "/atualizacurso")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public ResponseEntity<MatriculaDTO> atualizaCurso(@RequestBody Matricula matricula) {
+        Matricula atualizaMatricula = matriculaService.atualizaCurso(matricula);
+        return new ResponseEntity<>(matriculaMapper.toDto(matricula),HttpStatus.ACCEPTED);
     }
 
 }

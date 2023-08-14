@@ -11,7 +11,7 @@ public class MatriculaMapper {
     public MatriculaDTO toDto(Matricula matricula) {
        MatriculaDTO dto = new MatriculaDTO();
 
-       dto.setCursoIdDto(matricula.getId());
+       dto.setCursoIdDto(matricula.getCursoid());
        dto.setAlunoIdDto(matricula.getAlunoid());
 
        dto.setDataMatriculaDto(matricula.getDatamatricula());
