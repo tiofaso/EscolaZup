@@ -28,16 +28,16 @@ public class MatriculaService {
         Optional<Matricula> novoCurso = buscaAlunoId(matricula.getAlunoid());
 
 
-       if(novoCurso.isPresent()) {
-          Matricula atualizaCursoAluno = novoCurso.get();
-          atualizaCursoAluno.setCursoid(matricula.getCursoid());
-          atualizaCursoAluno.setDatamatricula(matricula.getDatamatricula());
-           return matriculaRepository.save(atualizaCursoAluno);
+        if (novoCurso.isPresent()) {
+            Matricula atualizaCursoAluno = novoCurso.get();
+            atualizaCursoAluno.setCursoid(matricula.getCursoid());
+            atualizaCursoAluno.setDatamatricula(matricula.getDatamatricula());
+            return matriculaRepository.save(atualizaCursoAluno);
 
-      }else {
-           System.out.printf("Aluno não encontrado");
-           return null;
-      }
+        } else {
+            System.out.print("Aluno não encontrado");
+            return null;
+        }
     }
 
     //Método que pesquisa por aluno na base
