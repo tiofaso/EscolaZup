@@ -6,12 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 @Service
 public class MatriculaService {
 
     @Autowired
     MatriculaRepository matriculaRepository;
+
 
     //Método que cadastra matrícula
     public Matricula cadastraMatricula(Matricula matricula) {
@@ -23,23 +25,23 @@ public class MatriculaService {
 
     //Método que atualiza curso do ano
     public Matricula atualizaCurso(Matricula matricula) {
-
-        Long alunoId = matricula.getAlunoid();
-        Long cursoId = matricula.getCursoid();
-        LocalDate dataMatricula = LocalDate.now();
-
-        Matricula novoCurso = buscaAlunoId(alunoId);
+        Optional<Matricula> novoCurso = buscaAlunoId(matricula.getAlunoid());
 
 
-       if(matricula.getAlunoid() != null) {
-            novoCurso.setCursoid(cursoId);
-            novoCurso.setDatamatricula(dataMatricula);
+       if(novoCurso.isPresent()) {
+          Matricula atualizaCursoAluno = novoCurso.get();
+          atualizaCursoAluno.setCursoid(matricula.getCursoid());
+          atualizaCursoAluno.setDatamatricula(matricula.getDatamatricula());
+           return matriculaRepository.save(atualizaCursoAluno);
+
+      }else {
+           System.out.printf("Aluno não encontrado");
+           return null;
       }
-        return matriculaRepository.save(matricula);
     }
 
     //Método que pesquisa por aluno na base
-    public Matricula buscaAlunoId(Long id) {
-        return matriculaRepository.findByAlunoId(id);
+    public Optional<Matricula> buscaAlunoId(Long alunoid) {
+        return matriculaRepository.findById(alunoid);
     }
 }
