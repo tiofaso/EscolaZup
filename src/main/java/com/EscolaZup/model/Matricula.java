@@ -7,7 +7,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Table(name = "tb_matricula")
@@ -24,12 +23,12 @@ public class Matricula {
     private LocalDate datamatricula;
 
     @ManyToOne
-    @JoinColumn(name = "alunoid", referencedColumnName = "id",  insertable = false, updatable = false)
+    @JoinColumn(name = "alunoid", referencedColumnName = "id", insertable = false, updatable = false)
     private Aluno aluno;
     private Long alunoid;
 
     @ManyToOne
-    @JoinColumn(name = "cursoid", referencedColumnName = "id",  insertable = false, updatable = false)
+    @JoinColumn(name = "cursoid", referencedColumnName = "id", insertable = false, updatable = false)
     private Curso curso;
     private Long cursoid;
 }

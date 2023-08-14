@@ -2,7 +2,6 @@ package com.EscolaZup.controller;
 
 import com.EscolaZup.dto.CursoDTO;
 import com.EscolaZup.mapper.CursoMapper;
-import com.EscolaZup.model.Aluno;
 import com.EscolaZup.model.Curso;
 import com.EscolaZup.service.CursoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/api/zupescola")

@@ -26,7 +26,7 @@ public class Professor {
     private int idade;
 
     @ManyToOne
-    @JoinColumn(name = "cursoid", referencedColumnName = "id",insertable = false, updatable = false)
+    @JoinColumn(name = "cursoid", referencedColumnName = "id", insertable = false, updatable = false)
     private Curso curso;
     private Long cursoid;
 

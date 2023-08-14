@@ -1,6 +1,5 @@
 package com.EscolaZup.dto;
 
-import com.EscolaZup.model.Curso;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,8 +12,8 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProfessorDTO {
-        private String nomeDto;
-        private int idadeDto;
-        private Long cursoIdDto;
-        private BigDecimal salarioDto;
+    private String nomeDto;
+    private int idadeDto;
+    private Long cursoIdDto;
+    private BigDecimal salarioDto;
 }
