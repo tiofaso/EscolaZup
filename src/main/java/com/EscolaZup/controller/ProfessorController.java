@@ -1,9 +1,7 @@
 package com.EscolaZup.controller;
 
-import com.EscolaZup.dto.CursoDTO;
 import com.EscolaZup.dto.ProfessorDTO;
 import com.EscolaZup.mapper.ProfessorMapper;
-import com.EscolaZup.model.Curso;
 import com.EscolaZup.model.Professor;
 import com.EscolaZup.service.ProfessorService;
 import org.springframework.beans.factory.annotation.Autowired;

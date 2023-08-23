@@ -1,6 +1,5 @@
 package com.EscolaZup.service;
 
-import com.EscolaZup.model.Aluno;
 import com.EscolaZup.model.Curso;
 import com.EscolaZup.repository.CursoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +19,9 @@ public class CursoService {
     }
 
     //Método que busca curso na DB
-    public Optional<Curso> buscaCursoId(Long id) { return cursoRepository.findById(id);}
+    public Optional<Curso> buscaCursoId(Long id) {
+        return cursoRepository.findById(id);
+    }
 
     //Método que apaga curso na DB
     public void deletar(Long id) {
