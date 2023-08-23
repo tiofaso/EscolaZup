@@ -36,7 +36,7 @@ public class CursoControllerTest {
     @Test //Teste do endpoint para listar todos os cursos
     public void buscaTodosAlunosTest() throws Exception {
         when(cursoService.buscarTodos())
-                .thenReturn(List.of(new Curso(1L,"lógica de programação",60)));
+                .thenReturn(List.of(new Curso(1L, "lógica de programação", 60)));
         this.mockMvc
                 .perform(MockMvcRequestBuilders.get("/api/zupescola/cursos")).andDo(print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
@@ -56,12 +56,12 @@ public class CursoControllerTest {
     }
 
     @Test //Teste do endpoind de delete
-    public  void deletaCursoTest() throws Exception {
+    public void deletaCursoTest() throws Exception {
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                .delete("/api/zupescola/deletecurso/{id}","0")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
+                        .delete("/api/zupescola/deletecurso/{id}", "0")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }
 }
