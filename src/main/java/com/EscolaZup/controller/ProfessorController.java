@@ -36,7 +36,7 @@ public class ProfessorController {
 
     //Endpoint para listar todos professoress (get)
     @GetMapping(path = "/professores")
-    public List<Professor> buscaTodosAlunos() {
+    public List<Professor> buscaTodosProfessores() {
         return professorService.buscarTodos();
     }
 }
