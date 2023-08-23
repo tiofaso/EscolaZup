@@ -31,7 +31,7 @@ public class MatriculaController {
 
     //Endpoint que atualiza curso do aluno (put)
     @PutMapping(path = "/atualizacurso/{alunoid}/{cursoid}")
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<MatriculaDTO> atualizaCurso(@PathVariable Long alunoid, @PathVariable Long cursoid) {
         Matricula atualizaMatricula = new Matricula();
         atualizaMatricula.setAlunoid(alunoid);
