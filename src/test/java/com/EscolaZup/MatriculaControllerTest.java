@@ -4,8 +4,12 @@ import com.EscolaZup.controller.MatriculaController;
 import com.EscolaZup.mapper.MatriculaMapper;
 import com.EscolaZup.model.Aluno;
 import com.EscolaZup.model.Curso;
+import com.EscolaZup.model.Matricula;
 import com.EscolaZup.service.AlunoService;
 import com.EscolaZup.service.MatriculaService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -15,7 +19,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import java.time.LocalDate;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -28,6 +35,9 @@ public class MatriculaControllerTest {
 
     @MockBean
     private MatriculaMapper matriculaMapper;
+
+    @MockBean
+    private AlunoService alunoService;
 
     @Autowired
     private MockMvc mockMvc;
@@ -45,15 +55,29 @@ public class MatriculaControllerTest {
     ///Todo ainda tá dando erro de java.lang.AssertionError: No value at JSON path
     @Test //Teste do endpoint de atualizar o curso do aluno
     public void atualizaCurso() throws Exception {
-        this.mockMvc
-                .perform(MockMvcRequestBuilders
-                        .put("/api/zupescola/atualizacurso/{alunoid}/{cursoid}",4,2)
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.alunoid").value(4))
-                .andExpect(jsonPath("$.cursoid").value(2))
-                ;
+        Aluno aluno = new Aluno(1l,"Fabio Sousa",40,"fabio.vaz@zup.com.br");
+        Curso curso = new Curso(4L,"Lógica de programação",60);
+        LocalDate data = LocalDate.now();
+        aluno.setId(1L);
+        curso.setId(4L);
 
+        Matricula matricula = new Matricula(0L,data,aluno,aluno.getId(),curso, curso.getId());
+
+         this.mockMvc
+                .perform(MockMvcRequestBuilders
+                        .put("/api/zupescola/atualizacurso/{alunoid}/{cursoid}",1L,4L)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .contentType(asJsonString(matricula)))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.alunoid").value(1L))
+                .andExpect(jsonPath("$.curso").value(4L));
+
+    }
+
+    private String asJsonString(Object obj) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
+        return objectMapper.writeValueAsString(obj);
     }
 
 }
