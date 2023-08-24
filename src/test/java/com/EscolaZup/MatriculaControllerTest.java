@@ -23,8 +23,8 @@ import java.time.LocalDate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
 @WebMvcTest(MatriculaController.class)
@@ -41,6 +41,9 @@ public class MatriculaControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
+
+    @Autowired
+    ObjectMapper objectMapper;
 
     @Test //Teste do endpoint de cadastro de matrículas
     public void cadastraMatriculaTest() throws Exception {
@@ -61,23 +64,19 @@ public class MatriculaControllerTest {
         aluno.setId(1L);
         curso.setId(4L);
 
-        Matricula matricula = new Matricula(0L,data,aluno,aluno.getId(),curso, curso.getId());
+        Matricula matricula = new Matricula(0L,data,aluno, 1L,curso,4L);
 
          this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .put("/api/zupescola/atualizacurso/{alunoid}/{cursoid}",1L,4L)
+                        .put("/api/zupescola/atualizacurso/{alunoid}/{cursoid}",1,4)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .contentType(asJsonString(matricula)))
+                        .content(objectMapper.writeValueAsString(matricula)))
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.alunoid").value(1L))
-                .andExpect(jsonPath("$.curso").value(4L));
+//                .andExpect(jsonPath("$.alunoid").value(1))
+//                .andExpect(jsonPath("$.cursoid").value(4L))
+                 .andExpect(content().json(objectMapper.writeValueAsString(matricula)));
 
     }
 
-    private String asJsonString(Object obj) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.registerModule(new JavaTimeModule());
-        return objectMapper.writeValueAsString(obj);
-    }
 
 }
